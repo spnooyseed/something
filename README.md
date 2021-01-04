@@ -1,0 +1,1 @@
+mystore_42Sunkaikai-06
