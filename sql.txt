@@ -1,0 +1,10 @@
+create database mystore_42sunkaikai_06 ;
+
+create table user(
+  userId int not null AUTO_INCREMENT PRIMARY KEY comment '用户ID' ,
+	userName VARCHAR(30) not null comment "用户名"  , 
+	password varchar(30) not null comment "密码"  ,
+	email varchar(30) not null comment "邮箱"  ,
+  activeStatus int ,
+	role int not null 
+)
