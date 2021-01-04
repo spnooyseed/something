@@ -4,10 +4,12 @@ import com.example.demo.pojo.User;
 import com.example.demo.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -31,13 +33,23 @@ public class LogController {
   public String toLogin() {
     return "login" ;
   }
-  @PostMapping("/user/login")
-  public String userLogin() {
-    return "register" ;
-  }
 
   @Autowired
   private UserServiceImpl userServiceImpl ;
+
+  @PostMapping("/user/login")
+  public String userLogin(User user , Model model , HttpSession session) {
+    User user1 = userServiceImpl.loginByEmailAndPassword(user) ;
+    if(user1 != null) {
+      session.setAttribute("loginUser" , user1 ) ;
+
+      return "dashboard" ;
+    }else {
+      model.addAttribute("msg" , "密码或者账号输入错误") ;
+      return "login" ;
+    }
+  }
+
 
   @PostMapping("/user/register")
   public String userRegister(User user , Map<String , Object> map) {

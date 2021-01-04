@@ -18,6 +18,8 @@ public class Good {
    private Integer goodHave ; // 商品库存
    private  String goodType ; // 商品类型
 
+    private static Integer initId = 1000 ;
+
     public Integer getGoodHave() {
         return goodHave;
     }

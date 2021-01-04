@@ -5,6 +5,15 @@ create table user(
 	userName VARCHAR(30) not null comment "用户名"  , 
 	password varchar(30) not null comment "密码"  ,
 	email varchar(30) not null comment "邮箱"  ,
-  activeStatus int ,
+    activeStatus int ,
 	role int not null 
+)
+
+create table Good(
+    goodId int not null AUTO_INCREMENT PRIMARY KEY comment '商品编号' ,
+	goodType varchar(20) not null comment '商品类型' ,
+	goodName varchar(20) not null comment '商品名称' ,
+	goodInformation varchar(20) comment '商品信息' ,
+	goodSale int not null comment '销售情况' ,
+	goodHave int not null comment '现有库存'
 )

@@ -17,7 +17,6 @@ public interface UserMapper {
 //   增加用户
     int addUser(User user) ;
 
-    // 根据账号密码登录
-    User loginByZhangHaoAndPassWord(User user) ;
-
+    //根据账号密码登录
+    User loginByEmailAndPassword(User user);
 }

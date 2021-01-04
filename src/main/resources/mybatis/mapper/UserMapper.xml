@@ -6,5 +6,7 @@
         insert into mystore_42SunKaikai_06.user(userName , password , email , activeStatus , role) values (#{userName} , #{password} , #{email} , #{activeStatus} , #{role}) ;
     </insert>
 
-
+    <select id="loginByEmailAndPassword" resultType="User">
+        select * from  user  where mystore_42SunKaikai_06.user.email=#{email} and password=#{password}
+    </select>
 </mapper>

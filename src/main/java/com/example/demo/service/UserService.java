@@ -10,4 +10,5 @@ import com.example.demo.pojo.User;
 public interface UserService {
     int addUser(User user);
 
+    User loginByEmailAndPassword(User user);
 }
