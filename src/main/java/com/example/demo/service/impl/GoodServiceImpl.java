@@ -45,4 +45,14 @@ public class GoodServiceImpl implements GoodService {
         return goodsMapper.getAll();
     }
 
+    @Override
+    public List<String> getAllgoodType() {
+        return goodsMapper.getAllgoodType() ;
+    }
+
+    @Override
+    public void addGood(Good good) {
+        goodsMapper.addGood(good) ;
+    }
+
 }

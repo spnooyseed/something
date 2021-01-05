@@ -21,4 +21,11 @@
     <select id="getAll" resultType="Good">
         select * from  mystore_42SunKaikai_06.good
     </select>
+    <select id="getAllgoodType" resultType="String">
+        select distinct goodType from mystore_42SunKaikai_06.good
+    </select>
+    <insert id="addGood" parameterType="Good">
+        insert into mystore_42SunKaikai_06.good(goodId , goodType , goodName , goodInformation , goodSale , goodHave)
+        values(#{goodId} , #{goodType} , #{goodName} , #{goodInformation} , #{goodSale} , #{goodHave}) ;
+    </insert>
 </mapper>

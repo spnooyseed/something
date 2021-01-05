@@ -16,4 +16,6 @@ public interface GoodService {
     public List<Good> getAllFood() ;
     public List<Good> getAllDrink() ;
     public List<Good> getAll() ;
+    public List<String> getAllgoodType() ;
+    public void addGood(Good good) ;
 }

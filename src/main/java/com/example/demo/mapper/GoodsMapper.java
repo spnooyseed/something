@@ -21,4 +21,6 @@ public interface GoodsMapper {
    List<Good> getAllFood() ;
    List<Good> getAllDrink() ;
    List<Good> getAll() ;
+   List<String> getAllgoodType() ;
+   void addGood(Good good) ;
 }
