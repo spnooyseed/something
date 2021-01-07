@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.util.Map;
 
 /**
@@ -57,4 +58,13 @@ public class LogController {
         userServiceImpl.addUser(user) ;
         return "login" ;
   }
+//  @PostMapping("/user/register")
+//  public String userRegister(@PathParam("userName") String userName ,
+//                             @PathParam("email") String email,
+//                             @PathParam("password") String password ,  Map<String , Object> map) {
+////    user.setActiveStatus(1) ;
+////    userServiceImpl.addUser(user) ;
+//    System.out.println(userName + " , " + email + ", " + password);
+//    return "login" ;
+//  }
 }

@@ -73,13 +73,4 @@ public class GoodController {
          return "emp/HaveStatic" ;
     }
 
-    @PostMapping("/emps/list_HaveStatic")
-    public String list_HaveStatic(@PathParam("num1") String goodType ,
-                                  @PathParam("num2") String goodName ,
-                                  Model model) {
-           List<Good> goodList = goodService.getAllGoodByGoodTypeAndGoodName(goodType , goodName) ;
-           System.out.println(goodName + " + " + goodType );
-           model.addAttribute("emps" , goodList) ;
-           return "emp/list_HaveStatic" ;
-    }
 }

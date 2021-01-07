@@ -50,17 +50,18 @@
 <div class="container-fluid">
     <div class="row">
         <!--引入侧边栏-->
-        <div th:replace="commons/bar::#sidebar(activeUri='emps/addGood')"></div>
+        <div th:replace="commons/bar::#sidebar(activeUri='emps/list_HaveStatic')"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-            <form th:action="@{/emps/list_HaveStatic}" method="post" >
+<!--            <form th:action="@{/emps/list_HaveStatic}" method="post" >-->
+<!--            <form >-->
                 <input type="hidden" name="_method" value="put" />
                 <input type="hidden" name="id" >
 
                 <div class="form-group" onclick="getAllGoodNameBygoodType()">
                     <lable >商品类型</lable>
-                    <select class="form-group" id="goodType">
+                    <select class="form-group" id="goodType" name="goodType">
                         <option> 类型选择 </option>
                         <span th:each="Type:${Types}" >
                             <option th:text="${Type}" ></option>
@@ -69,19 +70,27 @@
                 </div>
                 <div class="form-group" onclick="ChoseGood()">
                     <lable >具体商品</lable>
-                    <select class="form-group" id="goodName">
-                         alert(1) ;
+                    <select class="form-group" id="goodName"  name = "goodName">
                     </select>
                 </div>
-                <div class="form-group" >
-                    <lable> 已选择商品类型 </lable>
-                    <span id="num1"></span>
-                    <hr>
-                    <lable> 已选择商品 </lable>
-                    <span id="num2"></span>
-                </div>
-                <button type="submit" class="btn btn-primary" >添加此商品</button>
-            </form>
+                <button type="submit" class="btn btn-primary" onclick="Static()">统计此商品</button>
+        </main>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>商品编号</th>
+                        <th>商品信息</th>
+                        <th>商品名称</th>
+                        <th>商品类型</th>
+                        <th>销售情况</th>
+                        <th>现有库存</th>
+                    </tr>
+                    </thead>
+                    <tbody id="List_good"></tbody>
+                </table>
+            </div>
         </main>
     </div>
 </div>
@@ -103,27 +112,66 @@
         $("#num1").html(goodType) ;
         $.post("/getAllGoodNameBygoodType?goodType="+goodType , function (data) {
             var contain = "<option>请选择子类型</option>" ;
-            console.log(data) ;
+            // console.log(data) ;
             for(var i = 0 ; i < data.length ;i ++ ) {
                 contain += "<span><option " ;
                 contain += ">" ;
                 contain += data[i] ;
                 contain += "</option>" ;
-                console.log(contain) ;
+                // console.log(contain) ;
                 contain += "</span>"
             }
             $("#goodName").html(contain) ;
         })
-        var good = $("#num1").val() ;
-        console.log(good) ;
+        // var good = $("#num1").val() ;
+        // console.log(good) ;
     }
-    function ChoseGood() {
-        console.log(4) ;
-       var good = $("#num1").val() ;
-       var good1 = $("#goodName").val() ;
-       console.log(good1) ;
-        console.log(good) ;
-       $("#num2").html(good1) ;
+    // function ChoseGood() {
+    //     console.log(4) ;
+    //    var good = $("#num1").val() ;
+    //    var good1 = $("#goodName").val() ;
+    //    console.log(good1) ;
+    //     console.log(good) ;
+    //    $("#num2").html(good1) ;
+    // }
+    function Static() {
+       var goodType = $("#goodType").val() ;
+       var goodName = $("#goodName").val() ;
+
+       $.ajax({
+           url:'/emps/list_HaveStatic' ,
+           type: 'put' ,
+           data: {
+               goodName_ajax: goodName ,
+               goodType_ajax: goodType
+           },
+           success(data){
+               var contain = "" ;
+              for(var i = 0 ;i < data.length ;i ++ ) {
+                  // console.log(i);
+                  // console.log(data[i]) ;
+                  contain += "<tr><td>" ;
+                  contain += data[i].goodId ;
+                  contain += "</td><td>" ;
+                  contain += data[i].goodInformation ;
+                  contain += "</td>" ;
+                  contain += "<td>" ;
+                  contain += data[i].goodName ;
+                  contain += "</td><td>" ;
+                  contain += data[i].goodType ;
+                  contain += "</td><td>" ;
+                  contain += data[i].goodSale ;
+                  contain += "</td><td>" ;
+                  contain += data[i].goodHave ;
+                  contain += "</td></tr>" ;
+               }
+               // console.log(contain);
+               $("#List_good").html(contain) ;
+           },
+           error(){
+
+           }
+       })
     }
 </script>
 
