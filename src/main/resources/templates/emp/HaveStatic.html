@@ -54,41 +54,31 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-            <form th:action="@{/emp/addGood}" method="post">
-                <!--发送put请求修改员工数据-->
-                <!--
-                1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
-                2、页面创建一个post表单
-                3、创建一个input项，name="_method";值就是我们指定的请求方式
-                -->
+            <form th:action="@{/emps/list_HaveStatic}" method="post" >
                 <input type="hidden" name="_method" value="put" />
                 <input type="hidden" name="id" >
-                <div class="form-group">
-                    <label>商品编号</label>
-                    <input name="goodId" type="text" class="form-control" placeholder="商品编号">
-                </div>
-                <div class="form-group">
-                    <label>商品类型</label>
-                    <!--提交的是商品类型-->
-                    <select class="form-control" name="goodType">
-                        <option th:each="emp:${emps}" th:text="${emp}"></option>
+
+                <div class="form-group" onclick="getAllGoodNameBygoodType()">
+                    <lable >商品类型</lable>
+                    <select class="form-group" id="goodType">
+                        <option> 类型选择 </option>
+                        <span th:each="Type:${Types}" >
+                            <option th:text="${Type}" ></option>
+                        </span>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>商品名称</label>
-                    <input name="goodName" type="text" class="form-control" placeholder="商品名称">
+                <div class="form-group" onclick="ChoseGood()">
+                    <lable >具体商品</lable>
+                    <select class="form-group" id="goodName">
+                         alert(1) ;
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label>商品信息</label>
-                    <input name="goodInformation" type="text" class="form-control" placeholder="商品信息">
-                </div>
-                <div class="form-group">
-                    <label>已售</label>
-                    <input name="goodSale" type="text" class="form-control" placeholder="0" >
-                </div>
-                <div class="form-group">
-                    <label>库存</label>
-                    <input name="goodHave" type="text" class="form-control" placeholder="0" >
+                <div class="form-group" >
+                    <lable> 已选择商品类型 </lable>
+                    <span id="num1"></span>
+                    <hr>
+                    <lable> 已选择商品 </lable>
+                    <span id="num2"></span>
                 </div>
                 <button type="submit" class="btn btn-primary" >添加此商品</button>
             </form>
@@ -104,11 +94,38 @@
 <script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
 
 <!-- Icons -->
+
 <script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
-<script>
-    feather.replace()
+
+<script th:inline="javascript" type="text/javascript">
+    function getAllGoodNameBygoodType() {
+        var goodType = $("#goodType").val() ;
+        $("#num1").html(goodType) ;
+        $.post("/getAllGoodNameBygoodType?goodType="+goodType , function (data) {
+            var contain = "<option>请选择子类型</option>" ;
+            console.log(data) ;
+            for(var i = 0 ; i < data.length ;i ++ ) {
+                contain += "<span><option " ;
+                contain += ">" ;
+                contain += data[i] ;
+                contain += "</option>" ;
+                console.log(contain) ;
+                contain += "</span>"
+            }
+            $("#goodName").html(contain) ;
+        })
+        var good = $("#num1").val() ;
+        console.log(good) ;
+    }
+    function ChoseGood() {
+        console.log(4) ;
+       var good = $("#num1").val() ;
+       var good1 = $("#goodName").val() ;
+       console.log(good1) ;
+        console.log(good) ;
+       $("#num2").html(good1) ;
+    }
 </script>
 
 </body>
-
 </html>

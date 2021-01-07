@@ -56,13 +56,5 @@ public class LogController {
         user.setActiveStatus(1) ;
         userServiceImpl.addUser(user) ;
         return "login" ;
-//      System.out.println(password + " " + checkpassword) ;
-//      if(password.compareTo(checkpassword) != 0) {
-//        map.put("msg" , "两次密码不一致")  ;
-//        return  "register" ;
-//      }
-//      usersServiceImpl.addUser(new User(username , email , password)) ;
-//      map.put("msg" , "注册成功") ;
-//      return "login" ;
   }
 }

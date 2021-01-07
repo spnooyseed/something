@@ -23,4 +23,7 @@ public interface GoodsMapper {
    List<Good> getAll() ;
    List<String> getAllgoodType() ;
    void addGood(Good good) ;
+   List<Good> getAllgoodByType(String goodType) ;
+   List<String> getAllgoodNameByType(String goodType) ;
+   List<Good> getAllGoodByGoodTypeAndGoodName(String goodType , String goodName) ;
 }

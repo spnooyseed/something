@@ -55,4 +55,20 @@ public class GoodServiceImpl implements GoodService {
         goodsMapper.addGood(good) ;
     }
 
+    @Override
+    public List<Good> getAllgoodByType(String goodType) {
+        return goodsMapper.getAllgoodByType(goodType);
+    }
+
+    @Override
+    public List<Good> getAllGoodByGoodTypeAndGoodName(String goodType, String goodName) {
+        return goodsMapper.getAllGoodByGoodTypeAndGoodName(goodType , goodName);
+    }
+
+    @Override
+    public List<String> getAllgoodNameByType(String goodType) {
+        return goodsMapper.getAllgoodNameByType(goodType) ;
+    }
+
+
 }

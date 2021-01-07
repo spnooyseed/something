@@ -18,4 +18,7 @@ public interface GoodService {
     public List<Good> getAll() ;
     public List<String> getAllgoodType() ;
     public void addGood(Good good) ;
+    public List<Good> getAllgoodByType(String goodType) ;
+    List<Good> getAllGoodByGoodTypeAndGoodName(String goodType , String goodName) ;
+    List<String> getAllgoodNameByType(String goodType) ;
 }

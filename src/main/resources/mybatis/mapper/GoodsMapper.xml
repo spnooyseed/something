@@ -28,4 +28,14 @@
         insert into mystore_42SunKaikai_06.good(goodId , goodType , goodName , goodInformation , goodSale , goodHave)
         values(#{goodId} , #{goodType} , #{goodName} , #{goodInformation} , #{goodSale} , #{goodHave}) ;
     </insert>
+    <select id="getAllgoodByType" resultType="Good">
+        select * from mystore_42SunKaikai_06.good where goodType = #{goodType} ;
+    </select>
+
+    <select id="getAllGoodByGoodTypeAndGoodName" resultType="Good">
+        select  * from mystore_42SunKaikai_06.good where goodType = #{goodType} and goodName = #{goodName} ;
+    </select>
+    <select id="getAllgoodNameByType" resultType="String">
+        select goodName from mystore_42SunKaikai_06.good where goodType = #{goodType} ;
+    </select>
 </mapper>
