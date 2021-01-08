@@ -22,21 +22,18 @@ public class AjaxController {
 
     @RequestMapping("/getAllGoodNameBygoodType")
     @ResponseBody
+
     public Object addComInfo(Model model , String goodType) {
         List<String> strings = goodService.getAllgoodNameByType(goodType) ;
-        System.out.println("123");
         model.addAttribute(strings) ;
         return strings ;
     }
+
     @ResponseBody
     @PutMapping("/emps/list_HaveStatic")
     public Object list_HaveStatic(@RequestParam("goodType_ajax") String goodType ,
-                                  @RequestParam("goodName_ajax") String goodName
-                                  ) {
+                                  @RequestParam("goodName_ajax") String goodName) {
         List<Good> goodList = goodService.getAllGoodByGoodTypeAndGoodName(goodType , goodName) ;
-        System.out.println(goodName + " + " + goodType );
-//        model.addAttribute("emps" , goodList) ;
-        System.out.println(goodList.size());
         return goodList ;
     }
 }

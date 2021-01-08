@@ -17,14 +17,10 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public int addUser(User user) {
-        return userMapper.addUser(user);
-    }
+    public int addUser(User user) { return userMapper.addUser(user); }
 
     @Override
-    public User loginByEmailAndPassword(User user) {
-        return userMapper.loginByEmailAndPassword(user) ;
-    }
+    public User loginByEmailAndPassword(User user) { return userMapper.loginByEmailAndPassword(user) ; }
 
 
 }

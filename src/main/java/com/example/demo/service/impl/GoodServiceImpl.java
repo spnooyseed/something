@@ -21,44 +21,28 @@ public class GoodServiceImpl implements GoodService {
     private GoodsMapper goodsMapper ;
 
     @Override
-    public List<Good> getAllOfficeGood() {
-        return goodsMapper.getAllOfficeGood();
-    }
+    public List<Good> getAllOfficeGood() { return goodsMapper.getAllOfficeGood(); }
 
     @Override
-    public List<Good> getAllDayUse() {
-        return goodsMapper.getAllDayUse();
-    }
+    public List<Good> getAllDayUse() { return goodsMapper.getAllDayUse(); }
 
     @Override
-    public List<Good> getAllFood() {
-        return goodsMapper.getAllFood();
-    }
+    public List<Good> getAllFood() { return goodsMapper.getAllFood(); }
 
     @Override
-    public List<Good> getAllDrink() {
-        return goodsMapper.getAllDrink();
-    }
+    public List<Good> getAllDrink() { return goodsMapper.getAllDrink(); }
 
     @Override
-    public List<Good> getAll() {
-        return goodsMapper.getAll();
-    }
+    public List<Good> getAll() { return goodsMapper.getAll(); }
 
     @Override
-    public List<String> getAllgoodType() {
-        return goodsMapper.getAllgoodType() ;
-    }
+    public List<String> getAllgoodType() { return goodsMapper.getAllgoodType() ; }
 
     @Override
-    public void addGood(Good good) {
-        goodsMapper.addGood(good) ;
-    }
+    public void addGood(Good good) { goodsMapper.addGood(good) ; }
 
     @Override
-    public List<Good> getAllgoodByType(String goodType) {
-        return goodsMapper.getAllgoodByType(goodType);
-    }
+    public List<Good> getAllgoodByType(String goodType) { return goodsMapper.getAllgoodByType(goodType); }
 
     @Override
     public List<Good> getAllGoodByGoodTypeAndGoodName(String goodType, String goodName) {
@@ -66,9 +50,5 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public List<String> getAllgoodNameByType(String goodType) {
-        return goodsMapper.getAllgoodNameByType(goodType) ;
-    }
-
-
+    public List<String> getAllgoodNameByType(String goodType) { return goodsMapper.getAllgoodNameByType(goodType) ; }
 }

@@ -58,11 +58,7 @@ public class GoodController {
     }
 
     @PostMapping("/emp/addGood")
-    public String addGood(Good good) {
-        goodService.addGood(good) ;
-        System.out.println("添加成功") ;
-        return "emp/add" ;
-    }
+    public String addGood(Good good) { goodService.addGood(good) ;return "emp/add" ; }
 
     @RequestMapping("/emps/HaveStatic")
     public String toHaveStatic(Model model) {

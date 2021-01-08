@@ -14,18 +14,16 @@
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/register}" method="post">
     <img class="mb-4" th:src="@{/static/asserts/img/bootstrap-solid.svg}" src="../static/asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal" >Please sign up</h1>
+    <h1 class="h3 mb-3 font-weight-normal" >请注册</h1>
     <!--判断-->
     <p style="color: #ff0000" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-    <label class="sr-only" >Username</label>
-    <input type="text"  name="userName" class="form-control" placeholder="userName"  required="" autofocus="">
-    <input type="email"  name="email" class="form-control" placeholder="Email"  required="" autofocus="">
-    <label class="sr-only" >Password</label>
-    <input type="password" name="password" class="form-control" placeholder="Password"  required="">
-    <button class="btn btn-lg btn-primary btn-block" type = "submit">Sign Up</button>
+    <label class="sr-only" >用户名</label>
+    <input type="text"  name="userName" class="form-control" placeholder="用户名"  required="" autofocus="">
+    <input type="email"  name="email" class="form-control" placeholder="邮箱"  required="" autofocus="">
+    <label class="sr-only" >密码</label>
+    <input type="password" name="password" class="form-control" placeholder="密码"  required="">
+    <button class="btn btn-lg btn-primary btn-block" type = "submit">注册</button>
     <p class="mt-5 mb-3 text-muted">© 2020 - 2021 </p>
-    <a class="btn btn-sm" >中文</a>
-    <a class="btn btn-sm" >English</a>
 </form>
 </body>
 </html>

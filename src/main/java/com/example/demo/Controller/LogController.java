@@ -1,5 +1,8 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DesignModel.PassWordAdapter;
+import com.example.demo.DesignModel.UserLoginInstance;
+import com.example.demo.DesignModel.UserRegisterInstance;
 import com.example.demo.pojo.User;
 import com.example.demo.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,32 +21,34 @@ import java.util.Map;
  * @Date 2021/1/3 23:22
  * @Version IDEA 2020.1
  */
+
 @Controller
 public class LogController {
   @RequestMapping("/")
-    public String login() {
-      return "main" ;
-  }
+  public String login() { return "main" ; }
 
   @RequestMapping("/toRegister")
-  public String toRegister() {
-    return "register" ;
-  }
+  public String toRegister() { return "register" ; }
 
   @RequestMapping("/toLogin")
-  public String toLogin() {
-    return "login" ;
-  }
+  public String toLogin() { return "login" ; }
 
   @Autowired
   private UserServiceImpl userServiceImpl ;
 
+  private UserLoginInstance userLoginInstance = new UserLoginInstance();
+  private PassWordAdapter passWordAdapter ;
+  // 登录单例模式
   @PostMapping("/user/login")
   public String userLogin(User user , Model model , HttpSession session) {
+    passWordAdapter = new PassWordAdapter(user) ;
+    user.setPassword(passWordAdapter.passWordEncrytion());
     User user1 = userServiceImpl.loginByEmailAndPassword(user) ;
+    System.out.println(user) ;
+    System.out.println(user1);
     if(user1 != null) {
+      user1 = userLoginInstance.getInstance(user1) ;
       session.setAttribute("loginUser" , user1 ) ;
-
       return "dashboard" ;
     }else {
       model.addAttribute("msg" , "密码或者账号输入错误") ;
@@ -51,20 +56,26 @@ public class LogController {
     }
   }
 
-
+  private UserRegisterInstance registerInstance = new UserRegisterInstance();
+ // 注册单例模式
   @PostMapping("/user/register")
   public String userRegister(User user , Map<String , Object> map) {
-        user.setActiveStatus(1) ;
-        userServiceImpl.addUser(user) ;
+        passWordAdapter = new PassWordAdapter(user) ;
+        user.setPassword(passWordAdapter.passWordEncrytion()) ;
+        user = registerInstance.getInstance(user) ;
+        System.out.println(user);
+        User user1 = userServiceImpl.loginByEmailAndPassword(user) ;
+        if(user1 == null) {
+          user.setActiveStatus(1) ;
+          userServiceImpl.addUser(user) ;
+        }
         return "login" ;
   }
-//  @PostMapping("/user/register")
-//  public String userRegister(@PathParam("userName") String userName ,
-//                             @PathParam("email") String email,
-//                             @PathParam("password") String password ,  Map<String , Object> map) {
-////    user.setActiveStatus(1) ;
-////    userServiceImpl.addUser(user) ;
-//    System.out.println(userName + " , " + email + ", " + password);
-//    return "login" ;
-//  }
+  
+  @RequestMapping("/emp/SignOut")
+  public String SignOut(HttpSession session) {
+    userLoginInstance.remove();
+    session.removeAttribute("loginUser");
+    return "main" ;
+  }
 }
