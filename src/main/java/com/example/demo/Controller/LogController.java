@@ -42,8 +42,11 @@ public class LogController {
   @PostMapping("/user/login")
   public String userLogin(User user , Model model , HttpSession session) {
     passWordAdapter = new PassWordAdapter(user) ;
+
     user.setPassword(passWordAdapter.passWordEncrytion());
+    //
     User user1 = userServiceImpl.loginByEmailAndPassword(user) ;
+
     System.out.println(user) ;
     System.out.println(user1);
     if(user1 != null) {

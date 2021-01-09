@@ -38,4 +38,12 @@
     <select id="getAllgoodNameByType" resultType="String">
         select goodName from mystore_42SunKaikai_06.good where goodType = #{goodType} ;
     </select>
+    <select id="queryTotalRecords" resultType="java.lang.Integer">
+        select count(*) from mystore_42SunKaikai_06.good where goodType = #{Type};
+    </select>
+    <select id="queryLimitAccounts" resultType="Good" >
+        select * from mystore_42SunKaikai_06.good where goodType = #{Type} limit #{start}, #{pages};
+    </select>
+
+
 </mapper>

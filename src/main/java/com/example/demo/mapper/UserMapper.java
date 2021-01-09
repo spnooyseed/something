@@ -19,4 +19,5 @@ public interface UserMapper {
 
     //根据账号密码登录
     User loginByEmailAndPassword(User user);
+
 }

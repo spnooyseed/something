@@ -81,10 +81,18 @@
                     </tbody>
                 </table>
             </div>
+            <span><a th:href="@{/emps/DayUse(pageNum=1)}">首页</a></span>
+            <span th:switch="${currentPage}">
+            <a th:case="1" th:href="@{/emps/DayUse(pageNum=1)}">上一页</a>
+            <a th:case="*" th:href="@{/emps/DayUse(pageNum=${currentPage - 1})}">上一页</a>
+             </span>
+            <span th:switch="${currentPage}">
+            <a th:case="pageCount" th:href="@{/emps/DayUse(pageNum=${pageCount})}">下一页</a>
+            <a th:case="*" th:href="@{/emps/DayUse(pageNum=${currentPage + 1})}">下一页</a>
+            </span>
+            <span><a th:href="@{/emps/DayUse(pageNum=${pageCount})}">尾页</a></span>
         </main>
-        <!--				<form id="deleteEmpForm"  method="post">-->
-        <!--					<input type="hidden" name="_method" value="delete"/>-->
-        <!--				</form>-->
+
     </div>
 </div>
 

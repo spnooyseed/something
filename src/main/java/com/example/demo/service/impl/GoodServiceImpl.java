@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author spnooyseed
@@ -51,4 +52,16 @@ public class GoodServiceImpl implements GoodService {
 
     @Override
     public List<String> getAllgoodNameByType(String goodType) { return goodsMapper.getAllgoodNameByType(goodType) ; }
+
+    @Override
+    public Integer queryTotalRecords(String Type) {
+        System.out.println(Type);
+        return goodsMapper.queryTotalRecords(Type);
+    }
+
+    @Override
+    public List<Good> queryLimitAccounts(Integer start , Integer pages, String Type){
+        System.out.println(start + " " + pages + " " + Type) ;
+        return goodsMapper.queryLimitAccounts(start , pages , Type);
+    }
 }

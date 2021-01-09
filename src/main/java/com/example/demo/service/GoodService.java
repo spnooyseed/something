@@ -4,6 +4,7 @@ import com.example.demo.pojo.Good;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author spnooyseed
@@ -21,4 +22,6 @@ public interface GoodService {
     public List<Good> getAllgoodByType(String goodType) ;
     List<Good> getAllGoodByGoodTypeAndGoodName(String goodType , String goodName) ;
     List<String> getAllgoodNameByType(String goodType) ;
+    Integer queryTotalRecords(String Type);
+    List<Good> queryLimitAccounts(Integer start , Integer pages, String Type);
 }

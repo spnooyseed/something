@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author spnooyseed
@@ -26,4 +27,6 @@ public interface GoodsMapper {
    List<Good> getAllgoodByType(String goodType) ;
    List<String> getAllgoodNameByType(String goodType) ;
    List<Good> getAllGoodByGoodTypeAndGoodName(String goodType , String goodName) ;
+   Integer queryTotalRecords(String Type);
+   List<Good> queryLimitAccounts(Integer start , Integer pages, String Type);
 }

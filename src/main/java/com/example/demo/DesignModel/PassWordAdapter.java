@@ -23,4 +23,5 @@ public class PassWordAdapter implements PassWordTaget{
         MD5 md5 = new MD5() ;
         return md5.md5(getPassWord());
     }
+
 }
