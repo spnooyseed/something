@@ -1,7 +1,6 @@
-package com.example.demo.DesignModel;
+package com.example.demo.DesignModel.Instance;
 
 import com.example.demo.pojo.User;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @Author spnooyseed

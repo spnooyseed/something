@@ -1,4 +1,4 @@
-package com.example.demo.DesignModel;
+package com.example.demo.DesignModel.Adapter;
 
 import com.example.demo.pojo.User;
 
@@ -7,7 +7,7 @@ import com.example.demo.pojo.User;
  * Date on 2021/1/8  13:55
  */
 // 加密适配器
-public class PassWordAdapter implements PassWordTaget{
+public class PassWordAdapter  implements PassWordTaget{
     private User user = null ;
     public PassWordAdapter(User user1) {
         this.user = user1 ;

@@ -23,5 +23,8 @@ public interface GoodService {
     List<Good> getAllGoodByGoodTypeAndGoodName(String goodType , String goodName) ;
     List<String> getAllgoodNameByType(String goodType) ;
     Integer queryTotalRecords(String Type);
+    Integer queryTotal();
     List<Good> queryLimitAccounts(Integer start , Integer pages, String Type);
+    List<Integer> getGoodIdByName(String goodName) ;
+    List<String> getAllName() ;
 }

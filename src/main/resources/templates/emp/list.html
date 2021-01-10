@@ -50,13 +50,20 @@
 <div class="container-fluid">
     <div class="row">
         <!--引入侧边栏-->
-        <div th:replace="commons/bar::#sidebar(activeUri='emps/DayUse')"></div>
+        <div th:replace="commons/bar::#sidebar(activeUri='emps/getAll')"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
+
                     <thead>
+                    <div>
+                        <a class="btn btn-primary" th:href="@{/emps/getAll(goodT='DayUse')}" >日常用品</a>
+                        <a class="btn btn-primary" th:href="@{/emps/getAll(goodT='Drink')}" >饮料</a>
+                        <a class="btn btn-primary" th:href="@{/emps/getAll(goodT='Food')}" >食品</a>
+                        <a class="btn btn-primary" th:href="@{/emps/getAll(goodT='Office')}" >办公用品</a>
+                    </div>
                     <tr>
                         <th>商品编号</th>
                         <th>商品信息</th>
@@ -64,7 +71,6 @@
                         <th>商品类型</th>
                         <th>销售情况</th>
                         <th>现有库存</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -81,18 +87,18 @@
                     </tbody>
                 </table>
             </div>
-            <span><a th:href="@{/emps/DayUse(pageNum=1)}">首页</a></span>
+            <span><a th:href="@{/emps/getAll(pageNum=1,goodT=${Type})}">首页</a></span>
+
             <span th:switch="${currentPage}">
-            <a th:case="1" th:href="@{/emps/DayUse(pageNum=1)}">上一页</a>
-            <a th:case="*" th:href="@{/emps/DayUse(pageNum=${currentPage - 1})}">上一页</a>
+            <a th:case="1" th:href="@{/emps/getAll(pageNum=1,goodT=${Type})}">上一页</a>
+            <a th:case="*" th:href="@{/emps/getAll(pageNum=${currentPage - 1},goodT=${Type})}">上一页</a>
              </span>
             <span th:switch="${currentPage}">
-            <a th:case="pageCount" th:href="@{/emps/DayUse(pageNum=${pageCount})}">下一页</a>
-            <a th:case="*" th:href="@{/emps/DayUse(pageNum=${currentPage + 1})}">下一页</a>
+            <a th:case="pageCount" th:href="@{/emps/getAll(pageNum=${pageCount},goodT=${Type})}">下一页</a>
+            <a th:case="*" th:href="@{/emps/getAll(pageNum=${currentPage + 1},goodT=${Type})}">下一页</a>
             </span>
-            <span><a th:href="@{/emps/DayUse(pageNum=${pageCount})}">尾页</a></span>
+            <span><a th:href="@{/emps/getAll(pageNum=${pageCount},goodT=${Type})}">尾页</a></span>
         </main>
-
     </div>
 </div>
 
@@ -105,14 +111,6 @@
 
 <!-- Icons -->
 <script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
-
-<!--		<script>-->
-<!--			$(".deleteBtn").click(function(){-->
-<!--			    //删除当前员工的-->
-<!--				-->
-<!--			    $("#deleteEmpForm").attr("action",$(this).attr("del_uri")).submit();-->
-<!--			    return false;-->
-<!--            });-->
-<!--		</script>-->
+<!--策略-->
 </body>
 </html>

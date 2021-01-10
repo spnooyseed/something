@@ -44,6 +44,13 @@
     <select id="queryLimitAccounts" resultType="Good" >
         select * from mystore_42SunKaikai_06.good where goodType = #{Type} limit #{start}, #{pages};
     </select>
-
-
+    <select id="queryLimitAllAccounts" resultType="Good" >
+        select * from mystore_42SunKaikai_06.good limit #{start}, #{pages};
+    </select>
+    <select id="queryTotal" resultType="java.lang.Integer">
+        select count(*) from mystore_42SunKaikai_06.good ;
+    </select>
+    <select id="getAllName" resultType="java.lang.String">
+        select distinct goodName from mystore_42SunKaikai_06.good ;
+    </select>
 </mapper>

@@ -43,22 +43,13 @@
 </head>
 
 <body>
-<!--引入抽取的topbar-->
-<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
 <div th:replace="commons/bar::topbar"></div>
-
 <div class="container-fluid">
     <div class="row">
-        <!--引入侧边栏-->
-        <div th:replace="commons/bar::#sidebar(activeUri='emps/list_HaveStatic')"></div>
-
+        <div th:replace="commons/bar::#sidebar(activeUri='emps/HaveStatic')"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
-<!--            <form th:action="@{/emps/list_HaveStatic}" method="post" >-->
-<!--            <form >-->
                 <input type="hidden" name="_method" value="put" />
                 <input type="hidden" name="id" >
-
                 <div class="form-group" onclick="getAllGoodNameBygoodType()">
                     <lable >商品类型</lable>
                     <select class="form-group" id="goodType" name="goodType">
@@ -101,9 +92,6 @@
 <script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
 <script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
 <script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
-
-<!-- Icons -->
-
 <script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
 
 <script th:inline="javascript" type="text/javascript">
@@ -112,32 +100,19 @@
         $("#num1").html(goodType) ;
         $.post("/getAllGoodNameBygoodType?goodType="+goodType , function (data) {
             var contain = "<option>请选择子类型</option>" ;
-            // console.log(data) ;
             for(var i = 0 ; i < data.length ;i ++ ) {
                 contain += "<span><option " ;
                 contain += ">" ;
                 contain += data[i] ;
                 contain += "</option>" ;
-                // console.log(contain) ;
                 contain += "</span>"
             }
             $("#goodName").html(contain) ;
         })
-        // var good = $("#num1").val() ;
-        // console.log(good) ;
     }
-    // function ChoseGood() {
-    //     console.log(4) ;
-    //    var good = $("#num1").val() ;
-    //    var good1 = $("#goodName").val() ;
-    //    console.log(good1) ;
-    //     console.log(good) ;
-    //    $("#num2").html(good1) ;
-    // }
     function Static() {
        var goodType = $("#goodType").val() ;
        var goodName = $("#goodName").val() ;
-
        $.ajax({
            url:'/emps/list_HaveStatic' ,
            type: 'put' ,
@@ -148,8 +123,6 @@
            success(data){
                var contain = "" ;
               for(var i = 0 ;i < data.length ;i ++ ) {
-                  // console.log(i);
-                  // console.log(data[i]) ;
                   contain += "<tr><td>" ;
                   contain += data[i].goodId ;
                   contain += "</td><td>" ;
@@ -165,7 +138,6 @@
                   contain += data[i].goodHave ;
                   contain += "</td></tr>" ;
                }
-               // console.log(contain);
                $("#List_good").html(contain) ;
            },
            error(){

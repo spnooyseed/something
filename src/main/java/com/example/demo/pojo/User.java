@@ -1,7 +1,6 @@
 package com.example.demo.pojo;
 
 import lombok.Data;
-
 /**
  * @Author spnooyseed
  * @Date 2021/1/2 22:06

@@ -29,4 +29,8 @@ public interface GoodsMapper {
    List<Good> getAllGoodByGoodTypeAndGoodName(String goodType , String goodName) ;
    Integer queryTotalRecords(String Type);
    List<Good> queryLimitAccounts(Integer start , Integer pages, String Type);
+   List<Good> queryLimitAllAccounts(Integer start , Integer pages);
+   List<Integer> getGoodIdByName(String goodName) ;
+   Integer queryTotal();
+   List<String> getAllName() ;
 }

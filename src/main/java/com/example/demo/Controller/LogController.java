@@ -1,8 +1,9 @@
 package com.example.demo.Controller;
 
-import com.example.demo.DesignModel.PassWordAdapter;
-import com.example.demo.DesignModel.UserLoginInstance;
-import com.example.demo.DesignModel.UserRegisterInstance;
+
+import com.example.demo.DesignModel.Adapter.PassWordAdapter;
+import com.example.demo.DesignModel.Instance.UserLoginInstance;
+import com.example.demo.DesignModel.Instance.UserRegisterInstance;
 import com.example.demo.pojo.User;
 import com.example.demo.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 import java.util.Map;
 
 /**
@@ -44,7 +43,6 @@ public class LogController {
     passWordAdapter = new PassWordAdapter(user) ;
 
     user.setPassword(passWordAdapter.passWordEncrytion());
-    //
     User user1 = userServiceImpl.loginByEmailAndPassword(user) ;
 
     System.out.println(user) ;
